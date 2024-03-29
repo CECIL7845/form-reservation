@@ -10,6 +10,7 @@ function App () {
     time: '',
     guests: '',
   });
+  const [reservationSuccess, setReservationSuccess] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -54,6 +55,10 @@ function App () {
         time: '',
         guests: '',
       });
+      setReservationSuccess(true);
+      setTimeout(() => {
+        setReservationSuccess(false);
+      }, 3000);
     } else {
       setErrors(formErrors);
     }
@@ -106,6 +111,9 @@ function App () {
       {errors.guests && <span className="error">{errors.guests}</span>}
       <button type="submit">Reserve Table</button>
     </form>
+    {reservationSuccess && (
+        <p className="success-message">Your reservation is successful!</p>
+      )}
  </div>
   );
 };
